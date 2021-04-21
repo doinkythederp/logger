@@ -4,7 +4,33 @@ export interface LogOptions {
     tagOnNewLine?: boolean;
 }
 export declare const ColorList: {
-    [key: string]: string;
+    reset: string;
+    black: string;
+    red: string;
+    green: string;
+    yellow: string;
+    blue: string;
+    magenta: string;
+    cyan: string;
+    white: string;
+    blackBg: string;
+    redBg: string;
+    greenBg: string;
+    yellowBg: string;
+    blueBg: string;
+    magentaBg: string;
+    cyanBg: string;
+    whiteBg: string;
+    bold: string;
+    faint: string;
+    dim: string;
+    italic: string;
+    underline: string;
+    blinking: string;
+    flashing: string;
+    inverse: string;
+    reverse: string;
+    invisible: string;
 };
 export declare function Color(name: string, bright?: boolean): string;
 export interface ConsoleLike {
@@ -13,7 +39,7 @@ export interface ConsoleLike {
     warn(message: any, ...optionalParams: any[]): void;
     error(message: any, ...optionalParams: any[]): void;
 }
-export declare class Console {
+export default class Console {
     constructor(logger?: ConsoleLike);
     /**
      * The node console this was instantiated with

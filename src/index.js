@@ -34,7 +34,7 @@ export const ColorList = {
 export function Color(name, bright = false) {
     return ("\u001B[" + ColorList[name] + (bright ? ";1m" : "m"));
 }
-export class Console {
+export default class Console {
     constructor(logger) {
         this.console = logger || console;
     }
