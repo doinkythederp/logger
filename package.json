@@ -15,5 +15,8 @@
   "author": "doinkythederp",
   "license": "MIT",
   "type": "module",
-  "types": "src/index.d.ts"
+  "types": "src/index.d.ts",
+  "devDependencies": {
+    "@types/node": "^14.14.41"
+  }
 }
