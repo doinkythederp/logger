@@ -1,7 +1,14 @@
+/**
+ * @module @doinkthederp/logger
+ */
+/**
+ * @typedef LogOptions
+ */
 export interface LogOptions {
     location?: string;
     name?: string;
     doMultiline?: boolean;
+    console?: ConsoleLike;
 }
 export declare const ColorList: {
     reset: string;
@@ -40,33 +47,45 @@ export interface ConsoleLike {
     error(message: any, ...optionalParams: any[]): void;
 }
 export default class Logger {
-    constructor(logger?: ConsoleLike);
+    constructor(options: LogOptions);
+    /**
+     * The options this was instantiated with
+     */
+    options: LogOptions;
     /**
      * The node console this was instantiated with
      */
     console: ConsoleLike;
     /**
      * Log something to the console
+     * @param {any | any[]} message - What should be logged to the console
+     * @param {LogOptions} options - The options for this log
      * @example
      * log("Connected!")
      */
-    log(messages: any[], options?: LogOptions): this;
+    log(message: any | any[], options?: LogOptions): this;
     /**
      * Log an error to the console
+     * @param {any | any[]} message - What should be logged to the console
+     * @param {LogOptions} options - The options for this log
      * @example
      * error(new Error("Oops!"))
      */
-    error(messages: any[], options?: LogOptions): this;
+    error(message: any | any[], options?: LogOptions): this;
     /**
      * Log non-essential information to the console
+     * @param {any | any[]} message - What should be logged to the console
+     * @param {LogOptions} options - The options for this log
      * @example
      * info("There are 12 players connected")
      */
-    info(messages: any[], options?: LogOptions): this;
+    info(message: any | any[], options?: LogOptions): this;
     /**
      * Log a non-critical error or warning to the console
+     * @param {any | any[]} message - What should be logged to the console
+     * @param {LogOptions} options - The options for this log
      * @example
      * warn("Please update to the latest version")
      */
-    warn(messages: any[], options?: LogOptions): this;
+    warn(message: any | any[], options?: LogOptions): this;
 }

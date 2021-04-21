@@ -1,3 +1,6 @@
+/**
+ * @module @doinkthederp/logger
+ */
 import { inspect } from 'util';
 export const ColorList = {
     reset: "0",
@@ -35,10 +38,19 @@ export function Color(name, bright = false) {
     return ("\u001B[" + ColorList[name] + (bright ? ";1m" : "m"));
 }
 export default class Logger {
-    constructor(logger) {
-        this.console = logger || console;
+    constructor(options) {
+        this.console = options.console || globalThis.console;
+        this.options = options;
     }
+    /**
+     * Log something to the console
+     * @param {any | any[]} message - What should be logged to the console
+     * @param {LogOptions} options - The options for this log
+     * @example
+     * log("Connected!")
+     */
     log(message, options = {}) {
+        options = applyDefaults(options, this.options);
         if (!Array.isArray(message))
             message = [message];
         let prefix = `${Color("reset")}LOG   ❱`
@@ -50,7 +62,15 @@ export default class Logger {
         this.console.log(prefix + (options.doMultiline ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
         return this;
     }
+    /**
+     * Log an error to the console
+     * @param {any | any[]} message - What should be logged to the console
+     * @param {LogOptions} options - The options for this log
+     * @example
+     * error(new Error("Oops!"))
+     */
     error(message, options = {}) {
+        options = applyDefaults(options, this.options);
         if (!Array.isArray(message))
             message = [message];
         let prefix = `${Color("reset") + Color("red", true)}ERROR ❱`
@@ -62,7 +82,15 @@ export default class Logger {
         this.console.error(prefix + (options.doMultiline ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
         return this;
     }
+    /**
+     * Log non-essential information to the console
+     * @param {any | any[]} message - What should be logged to the console
+     * @param {LogOptions} options - The options for this log
+     * @example
+     * info("There are 12 players connected")
+     */
     info(message, options = {}) {
+        options = applyDefaults(options, this.options);
         if (!Array.isArray(message))
             message = [message];
         let prefix = `${Color("reset") + Color("blue")}INFO  ❱`
@@ -74,7 +102,15 @@ export default class Logger {
         this.console.info(prefix + (options.doMultiline ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
         return this;
     }
+    /**
+     * Log a non-critical error or warning to the console
+     * @param {any | any[]} message - What should be logged to the console
+     * @param {LogOptions} options - The options for this log
+     * @example
+     * warn("Please update to the latest version")
+     */
     warn(message, options = {}) {
+        options = applyDefaults(options, this.options);
         if (!Array.isArray(message))
             message = [message];
         let prefix = `${Color("reset") + Color("yellow")}WARN  ❱`
@@ -95,4 +131,7 @@ function parseInput(input) {
         output.push(inspect(message, { colors: true }));
     });
     return (output.join(" ")).split("\n");
+}
+function applyDefaults(target, defaults) {
+    return Object.assign(defaults, target);
 }
