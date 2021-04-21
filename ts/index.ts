@@ -11,7 +11,8 @@ import { inspect } from 'util';
 export interface LogOptions {
 	location?: string,
 	name?: string,
-	doMultiline?: boolean
+	doMultiline?: boolean,
+	console?: ConsoleLike
 }
 
 export const ColorList = {
@@ -59,9 +60,14 @@ export interface ConsoleLike {
 }
 
 export default class Logger {
-	constructor(logger?: ConsoleLike) {
-		this.console = logger || console;
+	constructor(options: LogOptions) {
+		this.console = options.console || globalThis.console;
+		this.options = options;
 	}
+	/**
+	 * The options this was instantiated with
+	 */
+	options: LogOptions
 
 	/** 
 	 * The node console this was instantiated with
@@ -76,6 +82,7 @@ export default class Logger {
 	 * log("Connected!")
 	 */
 	log(message: any | any[], options: LogOptions = {}): this {
+		options = applyDefaults(options, this.options);
 		if (!Array.isArray(message)) message = [message];
 
 		let prefix = `${Color("reset")}LOG   ❱`
@@ -100,6 +107,7 @@ export default class Logger {
 	 * error(new Error("Oops!"))
 	 */
 	error(message: any | any[], options: LogOptions = {}): this {
+		options = applyDefaults(options, this.options);
 		if (!Array.isArray(message)) message = [message];
 
 		let prefix = `${Color("reset") + Color("red", true)}ERROR ❱`
@@ -124,6 +132,7 @@ export default class Logger {
 	 * info("There are 12 players connected")
 	 */
 	info(message: any | any[], options: LogOptions = {}): this {
+		options = applyDefaults(options, this.options);
 		if (!Array.isArray(message)) message = [message];
 
 		let prefix = `${Color("reset") + Color("blue")}INFO  ❱`
@@ -148,6 +157,7 @@ export default class Logger {
 	 * warn("Please update to the latest version")
 	 */
 	warn(message: any | any[], options: LogOptions = {}): this {
+		options = applyDefaults(options, this.options);
 		if (!Array.isArray(message)) message = [message];
 
 		let prefix = `${Color("reset") + Color("yellow")}WARN  ❱`
@@ -174,4 +184,8 @@ function parseInput(input: any[]) {
 	});
 
 	return (output.join(" ")).split("\n");
+}
+
+function applyDefaults(target, defaults) {
+	return Object.assign(defaults, target);
 }
