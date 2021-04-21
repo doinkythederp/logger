@@ -1,4 +1,4 @@
-import { Console, Color } from "../src/index.js";
+import Console from "../src/index.js";
 var options;
 // Vanilla
 console.log("\nVanilla:");

@@ -51,7 +51,7 @@ export interface ConsoleLike {
 	error(message: any, ...optionalParams: any[]): void
 }
 
-export default class Console {
+export default class Logger {
 	constructor(logger?: ConsoleLike) {
 		this.console = logger || console;
 	}

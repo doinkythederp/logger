@@ -39,7 +39,7 @@ export interface ConsoleLike {
     warn(message: any, ...optionalParams: any[]): void;
     error(message: any, ...optionalParams: any[]): void;
 }
-export default class Console {
+export default class Logger {
     constructor(logger?: ConsoleLike);
     /**
      * The node console this was instantiated with
