@@ -62,3 +62,15 @@ new Console()
 	.error(new Error("Something went wrong!"))
 	.log({ isInfo: false, message: "log!"})
 	.warn([["incorrect", "try again"]]);
+
+// Alternate mutliline handling mode
+console.log("\nWith alternate multiline handling:")
+
+options = {
+	tagOnNewLine: true
+}
+new Console()
+	.info("very\nlong\ninfo", options)
+	.error(new Error(), options)
+	.log("very\nlong\nlog", options)
+	.warn("very\nlong\nwarning!", options);

@@ -1,7 +1,7 @@
 export interface LogOptions {
     location?: string;
     name?: string;
-    cleanMsg?: boolean;
+    tagOnNewLine?: boolean;
 }
 export declare const ColorList: {
     [key: string]: string;

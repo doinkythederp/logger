@@ -1,3 +1,4 @@
+import { inspect } from 'util';
 export const ColorList = {
     reset: "0",
     /* Foreground */
@@ -40,49 +41,58 @@ export class Console {
     log(message, options = {}) {
         if (!Array.isArray(message))
             message = [message];
-        let prefix = `${Color("reset")}LOG   ❱ `
-            .concat(options.location ? `${options.location}` : "")
-            .concat((options.location && options.name) ? " " : "")
-            .concat(options.name ? `(${options.name})` : "")
+        let prefix = `${Color("reset")}LOG   ❱`
+            .concat(options.location ? ` ${options.location}` : "")
+            .concat(options.name ? ` (${options.name})` : "")
             .concat((options.location || options.name) ? " ❱" : "")
-            .concat(Color("reset"));
-        this.console.log(prefix, ...message, Color("reset"));
+            .concat(" ", Color("reset"));
+        let shortPrefix = `${Color("reset")}      ❱ ${Color("reset")}`;
+        this.console.log(prefix + (options.tagOnNewLine ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
         return this;
     }
     error(message, options = {}) {
         if (!Array.isArray(message))
             message = [message];
-        let prefix = `${Color("reset") + Color("red", true)}ERROR ❱ `
-            .concat(options.location ? `${options.location}` : "")
-            .concat((options.location && options.name) ? " " : "")
-            .concat(options.name ? `(${options.name})` : "")
+        let prefix = `${Color("reset") + Color("red", true)}ERROR ❱`
+            .concat(options.location ? ` ${options.location}` : "")
+            .concat(options.name ? ` (${options.name})` : "")
             .concat((options.location || options.name) ? " ❱" : "")
-            .concat(Color("reset"));
-        this.console.error(prefix, ...message, Color("reset"));
+            .concat(" ", Color("reset"));
+        let shortPrefix = `${Color("reset")}${Color("red", true)}      ❱ ${Color("reset")}`;
+        this.console.error(prefix + (options.tagOnNewLine ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
         return this;
     }
     info(message, options = {}) {
         if (!Array.isArray(message))
             message = [message];
-        let prefix = `${Color("reset") + Color("blue")}INFO  ❱ `
-            .concat(options.location ? `${options.location}` : "")
-            .concat((options.location && options.name) ? " " : "")
-            .concat(options.name ? `(${options.name})` : "")
+        let prefix = `${Color("reset") + Color("blue")}INFO  ❱`
+            .concat(options.location ? ` ${options.location}` : "")
+            .concat(options.name ? ` (${options.name})` : "")
             .concat((options.location || options.name) ? " ❱" : "")
-            .concat(Color("reset"));
-        this.console.info(prefix, ...message, Color("reset"));
+            .concat(" ", Color("reset"));
+        let shortPrefix = `${Color("reset")}${Color("blue")}      ❱ ${Color("reset")}`;
+        this.console.info(prefix + (options.tagOnNewLine ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
         return this;
     }
     warn(message, options = {}) {
         if (!Array.isArray(message))
             message = [message];
-        let prefix = `${Color("reset") + Color("yellow")}WARN  ❱ `
-            .concat(options.location ? `${options.location}` : "")
-            .concat((options.location && options.name) ? " " : "")
-            .concat(options.name ? `(${options.name})` : "")
+        let prefix = `${Color("reset") + Color("yellow")}WARN  ❱`
+            .concat(options.location ? ` ${options.location}` : "")
+            .concat(options.name ? ` (${options.name})` : "")
             .concat((options.location || options.name) ? " ❱" : "")
-            .concat(Color("reset"));
-        this.console.warn(prefix, ...message, Color("reset"));
+            .concat(" ", Color("reset"));
+        let shortPrefix = `${Color("reset")}${Color("yellow")}      ❱ ${Color("reset")}`;
+        this.console.warn(prefix + (options.tagOnNewLine ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
         return this;
     }
+}
+function parseInput(input) {
+    let output = [];
+    input.forEach(message => {
+        if (typeof message === "string")
+            return output.push(message);
+        output.push(inspect(message, { colors: true }));
+    });
+    return (output.join(" ")).split("\n");
 }
