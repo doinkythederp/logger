@@ -1,6 +1,6 @@
 # doinkythederp's Logger module
 
-A module for making console logs prettier.
+A module for making console logs prettier. Made for internal use in my code, but anyone can use it.
 
 Makes `.error`, `.warn`, and `.info` actually look different than `.log`.
 
