@@ -1,6 +1,13 @@
+/**
+ * @module @doinkthederp/logger
+ */
+
 import { parse } from 'node:path';
 import { inspect } from 'util';
 
+/**
+ * @typedef LogOptions
+ */
 export interface LogOptions {
 	location?: string,
 	name?: string,
@@ -63,11 +70,12 @@ export default class Logger {
 
 	/**
 	 * Log something to the console
+	 * @param {any | any[]} message - What should be logged to the console
+	 * @param {LogOptions} options - The options for this log
 	 * @example
 	 * log("Connected!")
 	 */
-	log(messages: any[], options?: LogOptions): this
-	log(message: any, options: LogOptions = {}): this {
+	log(message: any | any[], options: LogOptions = {}): this {
 		if (!Array.isArray(message)) message = [message];
 
 		let prefix = `${Color("reset")}LOG   ❱`
@@ -86,11 +94,12 @@ export default class Logger {
 
 	/**
 	 * Log an error to the console
+	 * @param {any | any[]} message - What should be logged to the console
+	 * @param {LogOptions} options - The options for this log
 	 * @example
 	 * error(new Error("Oops!"))
 	 */
-	error(messages: any[], options?: LogOptions): this
-	error(message: any, options: LogOptions = {}): this {
+	error(message: any | any[], options: LogOptions = {}): this {
 		if (!Array.isArray(message)) message = [message];
 
 		let prefix = `${Color("reset") + Color("red", true)}ERROR ❱`
@@ -109,11 +118,12 @@ export default class Logger {
 
 	/**
 	 * Log non-essential information to the console
+	 * @param {any | any[]} message - What should be logged to the console
+	 * @param {LogOptions} options - The options for this log
 	 * @example
 	 * info("There are 12 players connected")
 	 */
-	info(messages: any[], options?: LogOptions): this
-	info(message: any, options: LogOptions = {}): this {
+	info(message: any | any[], options: LogOptions = {}): this {
 		if (!Array.isArray(message)) message = [message];
 
 		let prefix = `${Color("reset") + Color("blue")}INFO  ❱`
@@ -132,11 +142,12 @@ export default class Logger {
 
 	/**
 	 * Log a non-critical error or warning to the console
+	 * @param {any | any[]} message - What should be logged to the console
+	 * @param {LogOptions} options - The options for this log
 	 * @example
 	 * warn("Please update to the latest version")
 	 */
-	warn(messages: any[], options?: LogOptions): this
-	warn(message: any, options: LogOptions = {}): this {
+	warn(message: any | any[], options: LogOptions = {}): this {
 		if (!Array.isArray(message)) message = [message];
 
 		let prefix = `${Color("reset") + Color("yellow")}WARN  ❱`
