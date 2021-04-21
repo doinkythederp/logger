@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "A stylized JS console logger",
-  "main": "./src/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tests/index.js"
   },
   "keywords": [
     "logger",
@@ -14,5 +14,6 @@
   ],
   "author": "doinkythederp",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "types": "src/index.d.ts"
 }
