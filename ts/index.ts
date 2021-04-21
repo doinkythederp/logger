@@ -7,7 +7,7 @@ export interface LogOptions {
 	tagOnNewLine?: boolean
 }
 
-export const ColorList: { [key: string]: string } = {
+export const ColorList = {
 	reset: "0",
 	/* Foreground */
 	black: "30",
