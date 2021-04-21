@@ -1,4 +1,4 @@
-interface LogOptions {
+export interface LogOptions {
 	location?: string,
 	name?: string,
 	cleanMsg?: boolean
