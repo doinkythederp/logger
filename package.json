@@ -1,0 +1,18 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A stylised JS logger",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "logger",
+    "console",
+    "error handling"
+  ],
+  "author": "doinkythederp",
+  "license": "UNLICENSED",
+  "type": "module"
+}
