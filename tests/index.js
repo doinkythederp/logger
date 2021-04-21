@@ -67,7 +67,7 @@ new Console()
 console.log("\nWith alternate multiline handling:")
 
 options = {
-	tagOnNewLine: true
+	doMultiline: true
 }
 new Console()
 	.info("very\nlong\ninfo", options)

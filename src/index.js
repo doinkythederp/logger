@@ -47,7 +47,7 @@ export default class Logger {
             .concat((options.location || options.name) ? " ❱" : "")
             .concat(" ", Color("reset"));
         let shortPrefix = `${Color("reset")}      ❱ ${Color("reset")}`;
-        this.console.log(prefix + (options.tagOnNewLine ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
+        this.console.log(prefix + (options.doMultiline ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
         return this;
     }
     error(message, options = {}) {
@@ -59,7 +59,7 @@ export default class Logger {
             .concat((options.location || options.name) ? " ❱" : "")
             .concat(" ", Color("reset"));
         let shortPrefix = `${Color("reset")}${Color("red", true)}      ❱ ${Color("reset")}`;
-        this.console.error(prefix + (options.tagOnNewLine ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
+        this.console.error(prefix + (options.doMultiline ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
         return this;
     }
     info(message, options = {}) {
@@ -71,7 +71,7 @@ export default class Logger {
             .concat((options.location || options.name) ? " ❱" : "")
             .concat(" ", Color("reset"));
         let shortPrefix = `${Color("reset")}${Color("blue")}      ❱ ${Color("reset")}`;
-        this.console.info(prefix + (options.tagOnNewLine ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
+        this.console.info(prefix + (options.doMultiline ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
         return this;
     }
     warn(message, options = {}) {
@@ -83,7 +83,7 @@ export default class Logger {
             .concat((options.location || options.name) ? " ❱" : "")
             .concat(" ", Color("reset"));
         let shortPrefix = `${Color("reset")}${Color("yellow")}      ❱ ${Color("reset")}`;
-        this.console.warn(prefix + (options.tagOnNewLine ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
+        this.console.warn(prefix + (options.doMultiline ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
         return this;
     }
 }

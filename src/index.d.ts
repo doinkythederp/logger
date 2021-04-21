@@ -1,7 +1,7 @@
 export interface LogOptions {
     location?: string;
     name?: string;
-    tagOnNewLine?: boolean;
+    doMultiline?: boolean;
 }
 export declare const ColorList: {
     reset: string;
