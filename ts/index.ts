@@ -59,7 +59,7 @@ export interface ConsoleLike {
 }
 
 export default class Logger {
-	constructor(options: LogOptions) {
+	constructor(options: LogOptions = {}) {
 		this.console = options.console || globalThis.console;
 		this.options = options;
 	}
