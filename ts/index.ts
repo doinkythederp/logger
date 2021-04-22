@@ -2,7 +2,6 @@
  * @module @doinkthederp/logger
  */
 
-import { parse } from 'node:path';
 import { inspect } from 'util';
 
 /**
