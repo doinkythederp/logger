@@ -2,15 +2,22 @@
   "name": "@doinkythederp/logger",
   "version": "1.0.1",
   "description": "A stylized JS console logger",
-  "main": "src/index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "test": "node tests/index.js"
+    "test": "node tests/index.js",
+    "compile-es": "echo \"Compiling...\" && tsc ts/index.ts --outDir src/ -d -t es2020 -m es2020 --esModuleInterop --moduleResolution node && echo \"Done!\"",
+    "compile": "echo \"Compiling...\" && tsc ts/index.ts --outDir src/cjs/ -d -t es2020 -m commonjs --esModuleInterop --moduleResolution node && echo \"Done!\""
   },
   "keywords": [
     "logger",
     "console",
     "error handling"
   ],
+  "exports": {
+    "import": "./src/index.js",
+    "require": "./src/cjs/index.js",
+    "node": "./src/cjs/index.js"
+  },
   "author": "doinkythederp",
   "license": "MIT",
   "type": "module",
