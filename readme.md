@@ -43,7 +43,7 @@ logger.log("hello again!", { name: "Greeter" })
 ```
 
 ## Example:
-![Example](./images/example.png)
+![Example](https://github.com/doinkythederp/logger/blob/main/images/example.png?raw=true)
 
 ___
 After making an edit to `index.ts`, use this command to compile: 
