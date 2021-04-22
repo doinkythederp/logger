@@ -17,5 +17,16 @@
   "types": "src/index.d.ts",
   "devDependencies": {
     "@types/node": "^14.14.41"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doinkythederp/logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/doinkythederp/logger/issues"
+  },
+  "homepage": "https://github.com/doinkythederp/logger#readme"
 }
