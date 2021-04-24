@@ -54,13 +54,13 @@
          options = applyDefaults(options, this.options);
          if (!Array.isArray(message)) message = [message];
  
-         let prefix = `${Logger.Color("reset") + Logger.Color("blue")}INFO  ❱`
+         let prefix = `${Logger.Color("reset") + Logger.Color("black", true)}INFO  ❱`
              .concat(options.location ? ` ${options.location}` : "")
              .concat(options.name ? ` (${options.name})` : "")
              .concat((options.location || options.name) ? " ❱" : "")
              .concat(" ", Logger.Color("reset"));
  
-         let shortPrefix = `${Logger.Color("reset")}${Logger.Color("blue")}      ❱ ${Logger.Color("reset")}`;
+         let shortPrefix = `${Logger.Color("reset")}${Logger.Color("black", true)}      ❱ ${Logger.Color("reset")}`;
  
          this.console.info(prefix + (options.doMultiline ? parseInput(message).join("\n" + shortPrefix) : parseInput(message).join("\n")));
  
