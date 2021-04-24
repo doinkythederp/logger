@@ -5,6 +5,7 @@ export interface LogOptions {
     location?: string;
     /** The nickname of the logger, e.g. `Startup` */
     name?: string;
+    /** Do alternate multiline handling */
     doMultiline?: boolean;
     /** The console to log to */
     console?: ConsoleLike;
