@@ -1,52 +1,29 @@
-/**
- * @module @doinkthederp/logger
- */
-/**
- * @typedef LogOptions
- */
+
+/** Options for creating a Logger */
 export interface LogOptions {
+    /** The location of the logger, e.g. `src/index.js` */
     location?: string;
+    /** The nickname of the logger, e.g. `Startup` */
     name?: string;
     doMultiline?: boolean;
+    /** The console to log to */
     console?: ConsoleLike;
 }
-export declare const ColorList: {
-    reset: string;
-    black: string;
-    red: string;
-    green: string;
-    yellow: string;
-    blue: string;
-    magenta: string;
-    cyan: string;
-    white: string;
-    blackBg: string;
-    redBg: string;
-    greenBg: string;
-    yellowBg: string;
-    blueBg: string;
-    magentaBg: string;
-    cyanBg: string;
-    whiteBg: string;
-    bold: string;
-    faint: string;
-    dim: string;
-    italic: string;
-    underline: string;
-    blinking: string;
-    flashing: string;
-    inverse: string;
-    reverse: string;
-    invisible: string;
-};
-export declare function Color(name: string, bright?: boolean): string;
+
+/** A `global.console`-like interface */
 export interface ConsoleLike {
+    /** Print to stdout with newline */
     log(message: any, ...optionalParams: any[]): void;
+    /** Print to stdout with newline */
     info(message: any, ...optionalParams: any[]): void;
+    /** Print to stderr with newline */
     warn(message: any, ...optionalParams: any[]): void;
+    /** Print to stderr with newline */
     error(message: any, ...optionalParams: any[]): void;
 }
-export default class Logger {
+
+
+declare class Logger {
     constructor(options: LogOptions);
     /**
      * The options this was instantiated with
@@ -88,4 +65,39 @@ export default class Logger {
      * warn("Please update to the latest version")
      */
     warn(message: any | any[], options?: LogOptions): this;
+
+    /** Returns an escape code changing the console's color */
+    static Color(name: string, bright?: boolean): string;
+
+    static ColorList: {
+        reset: string;
+        black: string;
+        red: string;
+        green: string;
+        yellow: string;
+        blue: string;
+        magenta: string;
+        cyan: string;
+        white: string;
+        blackBg: string;
+        redBg: string;
+        greenBg: string;
+        yellowBg: string;
+        blueBg: string;
+        magentaBg: string;
+        cyanBg: string;
+        whiteBg: string;
+        bold: string;
+        faint: string;
+        dim: string;
+        italic: string;
+        underline: string;
+        blinking: string;
+        flashing: string;
+        inverse: string;
+        reverse: string;
+        invisible: string;
+    };
 }
+
+export default Logger;
