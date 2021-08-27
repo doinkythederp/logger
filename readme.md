@@ -44,9 +44,3 @@ logger.log("hello again!", { name: "Greeter" })
 
 ## Example:
 ![Example](https://github.com/doinkythederp/logger/blob/main/images/example.png?raw=true)
-
-___
-After making an edit to `index.ts`, use this command to compile: 
-```bash
-tsc ts/index.ts --outDir src/ -d -t es2020 -m es2020
-```
